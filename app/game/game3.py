@@ -68,9 +68,9 @@ def game3(savebase, message, mess, curruser):
                         savebase()
                         curruser.send('Прямо в точку! Ты забрал ' + str(mess[0]) + '₽')
                     elif win == 2:
-                        curruser.money += mess[0] * 4
+                        curruser.money -= mess[0]
                         savebase()
-                        curruser.send('Я не знаю как, но ты заработал ' + str(mess[0] * 4) + '₽')
+                        curruser.send('Выпал 0, ты проиграл ' + str(mess[0]) + '₽')
 
                     print(logsname, logsmoney, curruser.money - logsmoney, curruser.money)
 

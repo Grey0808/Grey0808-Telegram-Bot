@@ -2,7 +2,6 @@ from datetime import datetime
 import random
 
 import app.variables as var
-import app.admin as adm
 import app.base as base
 
 import app.game.game0 as game0

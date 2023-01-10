@@ -9,7 +9,7 @@ bot = var.bot
 values = {"bot": bot, "users": []}
 base.readbase(values)
 base.savebase(values)
-print(values["users"])
+print(len(values["users"]))
 
 
 @bot.message_handler(commands=['start'])

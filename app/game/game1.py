@@ -1,4 +1,4 @@
-import random
+import app.rand as rand
 import app.variables as var
 
 # keyboard
@@ -30,7 +30,7 @@ def game1(savebase, message, mess, curruser):
             if 10 <= mess <= curruser.money:
                 logsname = message.chat.first_name + " " + message.chat.username
                 logsmoney = curruser.money
-                if random.choice((0, 0, 1)):
+                if rand.random(33):
                     curruser.money += mess * 2
                     savebase()
                     curruser.send('Ты победил и заработал +' + str(mess * 2) + '₽')

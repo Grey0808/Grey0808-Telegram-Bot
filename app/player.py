@@ -4,8 +4,8 @@ bot = var.bot
 
 
 class Player(object):
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, _id):
+        self.id = _id
 
         self.money = 500
         self.gamemode = 0

@@ -16,8 +16,7 @@ def start_message(users, message):
 
 
 def callback_worker(bot, call):
-    bot.send_message(call.message.chat.id, "Не сюда нажимай")
-    bot.answer_callback_query(call.id)
+    bot.answer_callback_query(call.id, "Не сюда нажимай")
 
 
 def startfield(ind):

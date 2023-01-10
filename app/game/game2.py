@@ -1,4 +1,4 @@
-import random
+import app.rand as rand
 import app.variables as var
 import app.base as base
 import app.messages as messages
@@ -37,7 +37,7 @@ def game2(savebase, message, mess, curruser):
 
                     ind = set()
                     while len(ind) != 4:
-                        ind.add(random.randint(1, 9))
+                        ind.add(rand.randint(1, 9))
                     ind = sorted(list(ind))
 
                     keyboardfield = messages.startfield(ind)

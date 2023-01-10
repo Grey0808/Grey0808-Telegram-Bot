@@ -1,4 +1,4 @@
-import random
+import app.rand as rand
 import app.variables as var
 import app.base as base
 
@@ -42,7 +42,7 @@ def game3(savebase, message, mess, curruser):
                     logsname = message.chat.first_name + " " + message.chat.username
                     logsmoney = curruser.money
 
-                    number = random.randint(0, 37)
+                    number = rand.randint(0, 37)
                     if number == 37:
                         number = 0
 

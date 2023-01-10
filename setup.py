@@ -9,4 +9,4 @@ with open("key.txt", "w") as file:
     key = input("Введите ключ бота: ")
     file.write(key)
 with open("base.txt", "wb") as file:
-    pickle.dump([], file)
+    pickle.dump({}, file)

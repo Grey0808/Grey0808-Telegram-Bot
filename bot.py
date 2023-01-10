@@ -6,28 +6,24 @@ import app.base as base
 
 # bot
 bot = var.bot
-values = {"bot": bot, "users": []}
-base.readbase(values)
-base.savebase(values)
-print(len(values["users"]))
+users = base.readbase()
+base.savebase(users)
+print(len(users))
 
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    global values
-    mess.start_message(values, message)
+    mess.start_message(users, message)
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
-    global values
-    mess.callback_worker(values, call)
+    mess.callback_worker(bot, call)
 
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
-    global values
-    game.send_text(values, message)
+    game.send_text(users, message)
 
 
 bot.polling()

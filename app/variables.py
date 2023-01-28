@@ -10,7 +10,7 @@ bot = telebot.TeleBot(key)
 
 # keyboards
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
-keyboard1.row('Привет', 'Пока', 'Время', 'Баланс')
+keyboard1.row('Привет', 'Время', 'Баланс')
 keyboard1.row('Казино', 'Минное поле', 'Мини рулетка')
 
 keyboard2 = telebot.types.ReplyKeyboardMarkup(True)

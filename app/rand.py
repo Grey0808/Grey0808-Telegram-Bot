@@ -1,7 +1,6 @@
 import secrets
 
 rnd = secrets.SystemRandom()
-print("new rand")
 
 
 def random(procent):

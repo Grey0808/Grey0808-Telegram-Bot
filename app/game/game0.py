@@ -10,8 +10,6 @@ def game0(savebase, message, mess, curruser):
 
     if mess == 'привет':
         curruser.send('Привет, ' + message.chat.first_name)
-    elif mess == 'пока':
-        curruser.send('Прощай, ' + message.chat.first_name)
     elif mess == 'время':
         time = datetime.fromtimestamp(message.date, tz=None).strftime('%H:%M:%S %d.%m.%Y')
         curruser.send('На ваших часах сейчас примерно:\n' + time)

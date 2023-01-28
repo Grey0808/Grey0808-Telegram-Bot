@@ -3,55 +3,31 @@ from app.player import Player
 import app.base as base
 
 
-def start_message(values: dict, message) -> None:
-    users = values["users"]
-    bot = values["bot"]
-
+def start_message(users, message):
     information = [message.chat.id, message.chat.username, message.chat.first_name, message.chat.last_name]
     print(*information)
 
-    new = True
-    for i in range(len(users)):
-        if users[i].id == message.chat.id:
-            print('old')
-            new = False
-            break
-    if new:
-        values["users"] += [Player(message.chat.id)]
-        base.savebase(values)
-        print('new')
+    if not users.get(message.chat.id):
+        users[message.chat.id] = Player(message.chat.id)
+        base.savebase(users)
 
-    for i in range(len(users)):
-        if users[i].id == message.chat.id:
-            curruser = users[i]
-            break
-    bot.send_message(message.chat.id, 'Привет, ты написал мне /start', reply_markup=curruser.curr_keyboard)
+    curruser = users[message.chat.id]
+    curruser.send('Привет, ты написал мне /start')
 
 
-def callback_worker(values: dict, call) -> None:
-    bot = values["bot"]
-    bot.send_message(call.message.chat.id, "Не сюда нажимай")
-    bot.answer_callback_query(call.id)
+def callback_worker(bot, call):
+    bot.answer_callback_query(call.id, "Не сюда нажимай")
 
 
 def startfield(ind):
     cell = ['◼' for _ in range(9)]
     for i in ind:
         cell[i - 1] = '◻'
+
+    def button(num):
+        return telebot.types.InlineKeyboardButton(cell[num], callback_data='not')
+
     keyboardfield = telebot.types.InlineKeyboardMarkup()
-    keyboardfield .row(
-            telebot.types.InlineKeyboardButton(cell[0], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[1], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[2], callback_data='get')
-        )
-    keyboardfield .row(
-            telebot.types.InlineKeyboardButton(cell[3], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[4], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[5], callback_data='get'),
-        )
-    keyboardfield .row(
-            telebot.types.InlineKeyboardButton(cell[6], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[7], callback_data='get'),
-            telebot.types.InlineKeyboardButton(cell[8], callback_data='get'),
-        )
+    for j in (0, 3, 6):
+        keyboardfield.row(*[button(i) for i in range(j, j + 3)])
     return keyboardfield

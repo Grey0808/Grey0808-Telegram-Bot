@@ -1,16 +1,11 @@
 import pickle
 
 
-def readbase(values):
+def readbase():
     with open('files/base.txt', 'rb+') as file:
-        try:
-            users = pickle.load(file)
-        except BaseException as Error:
-            print("err", Error)
-            pickle.dump([], file)
-    values["users"] = users
+        return pickle.load(file)
 
 
-def savebase(values):
+def savebase(users):
     with open('files/base.txt', 'wb') as file:
-        pickle.dump(values["users"], file)
+        pickle.dump(users, file)

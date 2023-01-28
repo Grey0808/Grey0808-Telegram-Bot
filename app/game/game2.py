@@ -40,7 +40,7 @@ def game2(savebase, message, mess, curruser):
                         ind.add(rand.randint(1, 9))
                     ind = sorted(list(ind))
 
-                    keyboardfield = messages.startfield(ind)
+                    keyboardfield = messages.startfield(curruser, ind)
                     curruser.curr_keyboard = keyboardfield
                     curruser.send('Поле:')
 

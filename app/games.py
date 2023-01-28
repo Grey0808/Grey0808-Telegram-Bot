@@ -9,6 +9,8 @@ import app.game.game1 as game1
 import app.game.game2 as game2
 import app.game.game3 as game3
 
+import app.messages as mess
+
 # keyboard
 keyboard1 = var.keyboard1
 keyboard2 = var.keyboard2
@@ -21,17 +23,23 @@ def send_text(users, message):
     def savebase():
         base.savebase(users)
 
-    mess = message.text.lower()
+    msg = message.text.lower()
+
+    if not users.get(message.chat.id):
+        mess.start_message(users, message, False)
     curruser = users[message.chat.id]
 
-    if curruser.gamemode == 0:
-        game0.game0(savebase, message, mess, curruser)
+    if curruser.admin_menu:
+        pass
+
+    elif curruser.gamemode == 0:
+        game0.game0(savebase, message, msg, curruser)
 
     elif curruser.gamemode == 1:
-        game1.game1(savebase, message, mess, curruser)
+        game1.game1(savebase, message, msg, curruser)
 
     elif curruser.gamemode == 2:
-        game2.game2(savebase, message, mess, curruser)
+        game2.game2(savebase, message, msg, curruser)
 
     elif curruser.gamemode == 3:
-        game3.game3(savebase, message, mess, curruser)
+        game3.game3(savebase, message, msg, curruser)

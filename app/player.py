@@ -11,5 +11,8 @@ class Player(object):
         self.gamemode = 0
         self.curr_keyboard = var.keyboard1
 
+        self.admin = False
+        self.admin_menu = False
+
     def send(self, string):
         bot.send_message(self.id, string, reply_markup=self.curr_keyboard)

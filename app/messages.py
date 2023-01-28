@@ -25,7 +25,7 @@ def startfield(ind):
         cell[i - 1] = '◻'
 
     def button(num):
-        return telebot.types.InlineKeyboardButton(cell[num], callback_data='get')
+        return telebot.types.InlineKeyboardButton(cell[num], callback_data='not')
 
     keyboardfield = telebot.types.InlineKeyboardMarkup()
     for j in (0, 3, 6):

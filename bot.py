@@ -16,7 +16,7 @@ def start_message(message):
     mess.start_message(users, message)
 
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=lambda call: call.data == "not")
 def callback_worker(call):
     mess.callback_worker(bot, call)
 

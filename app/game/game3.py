@@ -1,6 +1,5 @@
 import app.rand as rand
 import app.variables as var
-import app.base as base
 import app.messages as messages
 
 # keyboard
@@ -9,7 +8,7 @@ keyboard2 = var.keyboard2
 
 
 # минное поле
-def game3(savebase, message, mess, curruser):
+def game3(message, mess, curruser):
 
     if mess == 'правила':
         curruser.send(
@@ -18,10 +17,8 @@ def game3(savebase, message, mess, curruser):
         curruser.send('Введите сначала ставку и через пробел номер клетки от 1 до 9:')
 
     elif mess == 'назад':
-        curruser.curr_keyboard = keyboard1
-        curruser.send('Приходите к нам почаще')
         curruser.gamemode = 1
-        savebase()
+        curruser.send('Приходите к нам почаще')
 
     elif mess == 'баланс':
         curruser.send('Сейчас ты богат на ' + str(curruser.money) + '₽')
@@ -52,11 +49,9 @@ def game3(savebase, message, mess, curruser):
 
                     if ind.count(mess[1]) != 0:
                         curruser.money += mess[0]
-                        savebase()
                         curruser.send('Ура, ты не взорвался и забрал +' + str(mess[0]) + '₽')
                     else:
                         curruser.money -= mess[0]
-                        savebase()
                         curruser.send('Ты взорвался')
                     print(logsname, logsmoney, curruser.money - logsmoney, curruser.money)
                 elif mess[0] < 10:
@@ -67,4 +62,3 @@ def game3(savebase, message, mess, curruser):
                 curruser.send('У тебя нехватает денег')
             elif mess[1] > 9 or mess[1] < 1:
                 curruser.send('Такой клетки нет')
-    # print("Users:", *(users[i].getinfo() + " |" for i in range(len(users))))

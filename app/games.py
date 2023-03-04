@@ -9,26 +9,23 @@ import app.messages as mess
 
 
 def send_text(users, message):
-    def savebase():
-        base.savebase(users)
-
     msg = message.text.lower()
 
     if not users.get(message.chat.id):
         mess.start_message(users, message, False)
     curruser = users[message.chat.id]
 
-    if curruser.admin_menu:
+    if curruser.admin:
         ...
 
     elif curruser.gamemode == 1:
-        game1.game1(savebase, message, msg, curruser)
+        game1.game1(message, msg, curruser)
 
     elif curruser.gamemode == 2:
-        game2.game2(savebase, message, msg, curruser)
+        game2.game2(message, msg, curruser)
 
     elif curruser.gamemode == 3:
-        game3.game3(savebase, message, msg, curruser)
+        game3.game3(message, msg, curruser)
 
     elif curruser.gamemode == 4:
-        game4.game4(savebase, message, msg, curruser)
+        game4.game4(message, msg, curruser)

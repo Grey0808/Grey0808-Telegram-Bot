@@ -7,19 +7,16 @@ keyboard2 = var.keyboard2
 
 
 # казино
-def game2(savebase, message, mess, curruser):
+def game2(message, mess, curruser):
 
     if mess == 'правила':
-        curruser.curr_keyboard = keyboard2
         curruser.send('Вероятность победы 0,33. '
                       'В случае выигрыша вы получите 300%, в случае проигрыша ставка исчезает')
         curruser.send('Введите ставку')
 
     elif mess == 'назад':
-        curruser.curr_keyboard = keyboard1
-        curruser.send('Ждём вас снова')
         curruser.gamemode = 1
-        savebase()
+        curruser.send('Ждём вас снова')
 
     elif mess == 'баланс':
         curruser.send('Сейчас на счету у тебя ' + str(curruser.money) + '₽')
@@ -32,11 +29,9 @@ def game2(savebase, message, mess, curruser):
                 logsmoney = curruser.money
                 if rand.random(33):
                     curruser.money += mess * 2
-                    savebase()
                     curruser.send('Ты победил и заработал +' + str(mess * 2) + '₽')
                 else:
                     curruser.money -= mess
-                    savebase()
                     curruser.send('Не повезло, ты проиграл')
                 print(logsname, logsmoney, curruser.money - logsmoney, curruser.money)
             elif mess < 10:
@@ -45,4 +40,3 @@ def game2(savebase, message, mess, curruser):
                 curruser.send('У вас столько нет')
         elif curruser.money < 10:
             curruser.send('Ты банкрот, у тебя ' + str(curruser.money) + '₽')
-    # print("Users:", *(users[i].getinfo() + " |" for i in range(len(users))))

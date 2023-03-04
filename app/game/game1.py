@@ -6,7 +6,7 @@ keyboard1 = var.keyboard1
 keyboard2 = var.keyboard2
 
 
-def game1(savebase, message, mess, curruser):
+def game1(message, mess, curruser):
 
     if mess == 'привет':
         curruser.send('Привет, ' + message.chat.first_name)
@@ -17,17 +17,11 @@ def game1(savebase, message, mess, curruser):
         curruser.send('На твоём счету ' + str(curruser.money) + '₽')
 
     elif mess == 'казино':
-        curruser.curr_keyboard = keyboard2
-        curruser.send('Добро пожаловать в казино')
         curruser.gamemode = 2
-        savebase()
+        curruser.send('Добро пожаловать в казино')
     elif mess == 'минное поле':
-        curruser.curr_keyboard = keyboard2
-        curruser.send('Добро пожаловать на минное поле')
         curruser.gamemode = 3
-        savebase()
+        curruser.send('Добро пожаловать на минное поле')
     elif mess == 'мини рулетка':
-        curruser.curr_keyboard = keyboard2
-        curruser.send('Добро пожаловать в мини рулетку')
         curruser.gamemode = 4
-        savebase()
+        curruser.send('Добро пожаловать в мини рулетку')

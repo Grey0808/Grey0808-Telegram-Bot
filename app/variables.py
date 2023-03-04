@@ -1,5 +1,7 @@
-import telebot
+import configparser
 
+import telebot
+import mysql.connector
 
 # bot
 with open("files/key.txt", "r") as file:
@@ -32,3 +34,12 @@ nechet = ['нечёт', 'нечет', 'нечётное', 'нечетное', '�
 
 # admins
 admins = (454049569, )
+
+
+# database
+config = configparser.ConfigParser()
+with open("files/connector.ini") as file:
+    config.read_file(file)
+connector = config.defaults()
+conn = mysql.connector.connect(**connector)
+cur = conn.cursor()

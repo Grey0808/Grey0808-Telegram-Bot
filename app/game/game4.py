@@ -12,7 +12,7 @@ nechet = var.nechet
 
 
 # мини рулетка
-def game4(savebase, message, mess, curruser):
+def game4(message, mess, curruser):
     if mess == 'правила':
         curruser.send(
             'Всего есть 38 чисел, от 1 до 36 и два 0, выбирается случайное. '
@@ -25,10 +25,8 @@ def game4(savebase, message, mess, curruser):
         curruser.send('Введите ставку и чётное/нечётное:')
 
     elif mess == 'назад':
-        curruser.curr_keyboard = keyboard1
-        curruser.send('Ждём вас снова')
         curruser.gamemode = 1
-        savebase()
+        curruser.send('Ждём вас снова')
 
     elif mess == 'баланс':
         curruser.send('В твоём кошельке ' + str(curruser.money) + '₽')
@@ -61,15 +59,12 @@ def game4(savebase, message, mess, curruser):
                     curruser.send('На барабане число ' + str(number))
                     if win == 0:
                         curruser.money -= mess[0]
-                        savebase()
                         curruser.send('Ты проиграл ' + str(mess[0]) + '₽')
                     elif win == 1:
                         curruser.money += mess[0]
-                        savebase()
                         curruser.send('Прямо в точку! Ты забрал ' + str(mess[0]) + '₽')
                     elif win == 2:
                         curruser.money -= mess[0]
-                        savebase()
                         curruser.send('Выпал 0, ты проиграл ' + str(mess[0]) + '₽')
 
                     print(logsname, logsmoney, curruser.money - logsmoney, curruser.money)
@@ -80,4 +75,3 @@ def game4(savebase, message, mess, curruser):
                     curruser.send('Куда так много')
             elif curruser.money < 10:
                 curruser.send('У тебя не хватает денег')
-    # print("Users:", *(users[i].getinfo() + " |" for i in range(len(users))))

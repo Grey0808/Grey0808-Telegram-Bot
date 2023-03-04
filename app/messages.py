@@ -9,8 +9,9 @@ def start_message(users, message, send=True):
     print(*information)
 
     if not users.get(message.chat.id):
-        users[message.chat.id] = Player(message.chat.id)
-        base.savebase(users)
+        user = Player(message.chat.id)
+        users[message.chat.id] = user
+        base.insert(*user.tuple())
 
     if send:
         curruser = users[message.chat.id]
@@ -18,9 +19,9 @@ def start_message(users, message, send=True):
 
 
 def callback_worker(bot, call):
-    # "id", "gamemode", "admin_menu", "text"
-    if not call["admin_menu"]:
-        if call["gamemode"] == 2:
+    # "id", "gamemode", "admin", "text"
+    if not call["admin"]:
+        if call["gamemode"] == 3:
             bot.answer_callback_query(call["call"], call["text"])
 
 
@@ -29,7 +30,8 @@ def startfield(user, ind):
     for i in ind:
         cell[i - 1] = '◻'
 
-    data = "_".join(map(str, [user.id, user.gamemode, int(user.admin_menu), "Не сюда нажимай"]))
+    data = "_".join(map(str, [user.id, user.gamemode, user.admin, "Не сюда нажимай"]))
+
     def button(num):
         return telebot.types.InlineKeyboardButton(cell[num], callback_data=data)
 

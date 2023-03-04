@@ -6,7 +6,6 @@ import app.base as base
 # bot
 bot = var.bot
 users = base.readbase()
-base.savebase(users)
 print(len(users))
 
 
@@ -19,9 +18,9 @@ def start_message(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     data = [func(inf) for inf, func in zip(call.data.split("_"), (int, int, int, str))]
-    data = dict(zip(["id", "gamemode", "admin_menu", "text"], data))
+    data = dict(zip(["id", "gamemode", "admin", "text"], data))
     data["call"] = call.id
-    if not data["admin_menu"]:
+    if not data["admin"]:
         mess.callback_worker(bot, data)
 
 

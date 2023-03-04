@@ -1,10 +1,7 @@
-import pickle
-import telebot
 import app.messages as mess
 import app.variables as var
 import app.games as game
 import app.base as base
-from app.player import Player
 
 # bot
 bot = var.bot

@@ -1,4 +1,5 @@
 import pickle
+import app.player as player
 
 
 def readbase():

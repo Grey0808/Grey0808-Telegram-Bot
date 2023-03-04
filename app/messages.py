@@ -18,8 +18,10 @@ def start_message(users, message, send=True):
 
 
 def callback_worker(bot, call):
-    if call["gamemode"] == 2:
-        bot.answer_callback_query(call["call"], call["text"])
+    # "id", "gamemode", "admin_menu", "text"
+    if not call["admin_menu"]:
+        if call["gamemode"] == 2:
+            bot.answer_callback_query(call["call"], call["text"])
 
 
 def startfield(user, ind):

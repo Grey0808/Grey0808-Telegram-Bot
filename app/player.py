@@ -8,7 +8,7 @@ class Player(object):
         self.id = _id
 
         self.money = 500
-        self.gamemode = 0
+        self.gamemode = 1
         self.curr_keyboard = var.keyboard1
 
         self.admin = False
